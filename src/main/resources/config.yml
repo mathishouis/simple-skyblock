@@ -1,0 +1,29 @@
+######################################
+#                                    #
+#   Configuration file for Skyrama   #
+#                                    #
+######################################
+
+# General plugin settings
+general:
+
+  # Name of the world where floating islands spawn
+  world: world
+
+# Island related settings
+island:
+
+  # Name of the default island schematic in folder ./schematics/******.schematic
+  schematic: island
+
+  # Distance between each islands in blocks
+  # DON'T CHANGE THIS VALUE IN MID GAME /!\
+  distance: 256
+
+  # Different island extension size in blocks (island width)
+  # DON'T CHANGE THIS VALUE IN MID GAME /!\
+  extension_level:
+    0: 65
+    1: 129
+    2: 257
+    3: 513
