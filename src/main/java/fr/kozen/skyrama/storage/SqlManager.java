@@ -2,6 +2,7 @@ package fr.kozen.skyrama.storage;
 
 import com.mysql.cj.jdbc.MysqlConnectionPoolDataSource;
 import com.mysql.cj.jdbc.MysqlDataSource;
+import fr.kozen.skyrama.Skyrama;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -11,11 +12,11 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class SqlManager {
 
-    private String user = "root";
-    private String host = "localhost";
-    private String name = "skyrama";
-    private String password = "";
-    private int port = 3306;
+    private String user = (String) Skyrama.getPlugin(Skyrama.class).getConfig().get("mysql.user");
+    private String host = (String) Skyrama.getPlugin(Skyrama.class).getConfig().get("mysql.host");
+    private String name = (String) Skyrama.getPlugin(Skyrama.class).getConfig().get("mysql.name");
+    private String password = (String) Skyrama.getPlugin(Skyrama.class).getConfig().get("mysql.password");
+    private int port = (int) Skyrama.getPlugin(Skyrama.class).getConfig().get("mysql.port");
     private Connection connection;
     private MysqlDataSource dataSource = new MysqlConnectionPoolDataSource();
 
