@@ -5,7 +5,9 @@ import org.bukkit.World;
 import org.bukkit.block.Biome;
 import org.bukkit.entity.Player;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 public class Island {
@@ -15,6 +17,7 @@ public class Island {
     private int extensionLevel;
     private List<Player> players;
     private Location spawn;
+    private Map<Player, Player> invites;
 
     public Island(int id, Biome biome, int extensionLevel, Location spawn) {
 
@@ -23,6 +26,7 @@ public class Island {
         this.extensionLevel = extensionLevel;
         this.players = IslandDao.getPlayers(id);
         this.spawn = spawn;
+        this.invites = new HashMap<>();
 
     }
 
@@ -47,6 +51,12 @@ public class Island {
     public List<Player> getPlayers() {
 
         return this.players;
+
+    }
+
+    public Map<Player, Player> getInvites() {
+
+        return this.invites;
 
     }
 

@@ -23,7 +23,10 @@ This plugin was originally made for `Spigot 1.17` but you can totally edit it to
 | `/is create`      | Create an island.      |
 | `/is home` | Teleport user to his island spawn.      |
 | `/is setspawn` | Change the island spawn to user position. |
-| `/is visit <Player Name>` | Teleport to the specified player island.
+| `/is visit <Player Name>` | Teleport to the specified player island. |
+| `/is invite <Player Name>` | Invite the player to play on your island. |
+| `/is accept <Player Name>` | Accept the player invitation. |
+| `/is deny <Player Name>` | Decline the player invitation. |
 
 ## Permissions
 

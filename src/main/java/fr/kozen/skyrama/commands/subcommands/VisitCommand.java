@@ -23,7 +23,7 @@ public class VisitCommand implements ISubCommand {
 
     @Override
     public String getSyntax() {
-        return "/island visit";
+        return "/island visit playerName";
     }
 
     @Override

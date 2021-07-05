@@ -1,9 +1,6 @@
 package fr.kozen.skyrama.commands;
 
-import fr.kozen.skyrama.commands.subcommands.CreateCommand;
-import fr.kozen.skyrama.commands.subcommands.HomeCommand;
-import fr.kozen.skyrama.commands.subcommands.SetSpawnCommand;
-import fr.kozen.skyrama.commands.subcommands.VisitCommand;
+import fr.kozen.skyrama.commands.subcommands.*;
 import fr.kozen.skyrama.interfaces.ISubCommand;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -22,6 +19,9 @@ public class CommandManager implements CommandExecutor {
         subcommands.add(new HomeCommand());
         subcommands.add(new SetSpawnCommand());
         subcommands.add(new VisitCommand());
+        subcommands.add(new InviteCommand());
+        subcommands.add(new InviteAcceptCommand());
+        subcommands.add(new InviteDenyCommand());
 
     }
 

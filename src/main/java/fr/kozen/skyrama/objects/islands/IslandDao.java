@@ -1,7 +1,6 @@
 package fr.kozen.skyrama.objects.islands;
 
 import fr.kozen.skyrama.Skyrama;
-import fr.kozen.skyrama.storage.SqlManager;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.block.Biome;
@@ -23,12 +22,13 @@ public class IslandDao {
         )) {
             ResultSet resultSet = stmt.executeQuery();
             while (resultSet.next()) {
-                islands.put(resultSet.getInt("id"), new Island(
+                Island island = new Island(
                         resultSet.getInt("id"),
                         Biome.BAMBOO_JUNGLE,
                         resultSet.getInt("extension_level"),
-                        new Location(Bukkit.getWorld((String) Skyrama.getPlugin(Skyrama.class).getConfig().get("general.world")), resultSet.getFloat("spawn_x"), resultSet.getFloat("spawn_y"), resultSet.getFloat("spawn_z"), resultSet.getFloat("spawn_yaw"), resultSet.getFloat("spawn_pitch"))
-                        ));
+                        new Location(Bukkit.getWorld((String) Skyrama.getPlugin(Skyrama.class).getConfig().get("general.world")), resultSet.getFloat("spawn_x"), resultSet.getFloat("spawn_y"), resultSet.getFloat("spawn_z"), resultSet.getFloat("spawn_yaw"), resultSet.getFloat("spawn_pitch")));
+
+                islands.put(resultSet.getInt("id"), island);
             }
 
         } catch (SQLException e) {
@@ -56,32 +56,6 @@ public class IslandDao {
         }
 
         return players;
-
-    }
-
-    public static Island getIslandById(int islandId) {
-
-        List<Player> players = new ArrayList<>();
-
-        try (Connection conn = Skyrama.getSqlManager().getConnection(); PreparedStatement stmt = conn.prepareStatement(
-                "SELECT * FROM islands WHERE id = ?"
-        )) {
-            stmt.setInt(1, islandId);
-            ResultSet resultSet = stmt.executeQuery();
-           if (resultSet.next()) {
-                return new Island(
-                        resultSet.getInt("id"),
-                        Biome.BADLANDS,
-                        resultSet.getInt("extension_level"),
-                        new Location(Bukkit.getWorld((String) Skyrama.getPlugin(Skyrama.class).getConfig().get("general.world")), resultSet.getFloat("spawn_x"), resultSet.getFloat("spawn_y"), resultSet.getFloat("spawn_z"), resultSet.getFloat("spawn_yaw"), resultSet.getFloat("spawn_pitch"))
-                );
-            }
-
-        } catch (SQLException e) {
-            Bukkit.getLogger().info("Something went wrong. " + e);
-        }
-
-        return null;
 
     }
 
@@ -141,6 +115,23 @@ public class IslandDao {
             stmt.setInt(2, islandId);
             stmt.setInt(3, rank);
             stmt.execute();
+
+        } catch (SQLException e) {
+            Bukkit.getLogger().info("Something went wrong. " + e);
+        }
+
+    }
+
+    public static void setPlayerIsland(Player player, Island island) {
+
+        try (Connection conn = Skyrama.getSqlManager().getConnection(); PreparedStatement stmt = conn.prepareStatement(
+                "UPDATE islands_users SET island_id = ?, rank = ? WHERE uuid = ?;"
+        )) {
+            stmt.setInt(1, island.getId());
+            stmt.setInt(2, 1);
+            stmt.setString(3, player.getUniqueId().toString());
+
+            stmt.executeUpdate();
 
         } catch (SQLException e) {
             Bukkit.getLogger().info("Something went wrong. " + e);
