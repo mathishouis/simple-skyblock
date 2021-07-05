@@ -1,14 +1,12 @@
 package fr.kozen.skyrama.objects.islands;
 
 import org.bukkit.Location;
-import org.bukkit.World;
 import org.bukkit.block.Biome;
 import org.bukkit.entity.Player;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 
 public class Island {
 

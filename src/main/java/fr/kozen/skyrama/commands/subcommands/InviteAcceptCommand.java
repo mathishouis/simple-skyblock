@@ -1,12 +1,10 @@
 package fr.kozen.skyrama.commands.subcommands;
 
+import fr.kozen.skyrama.Skyrama;
 import fr.kozen.skyrama.interfaces.ISubCommand;
 import fr.kozen.skyrama.objects.islands.Island;
 import fr.kozen.skyrama.objects.islands.IslandDao;
-import net.md_5.bungee.api.chat.ClickEvent;
-import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
 public class InviteAcceptCommand implements ISubCommand {
@@ -44,17 +42,17 @@ public class InviteAcceptCommand implements ISubCommand {
 
                 IslandDao.setPlayerIsland(player, newIsland);
 
-                target.sendMessage(ChatColor.GREEN + target.getName() + " joined your island!");
+                target.sendMessage(Skyrama.getLocaleManager().getString("player-join-island").replace("{0}", player.getName()));
 
-                player.sendMessage(ChatColor.GREEN + "You joined " + target.getName() + " island with success!");
+                player.sendMessage(Skyrama.getLocaleManager().getString("player-join-island-success").replace("{0}", target.getName()));
                 player.performCommand("is home");
 
             } else {
-                player.sendMessage(ChatColor.RED + args[1] + " never invited you on his island.");
+                player.sendMessage(Skyrama.getLocaleManager().getString("player-no-invited").replace("{0}", args[1]));
             }
 
         } else {
-            player.sendMessage(ChatColor.RED + args[1] + " is not online.");
+            player.sendMessage(Skyrama.getLocaleManager().getString("player-offline").replace("{0}", args[1]));
         }
 
     }

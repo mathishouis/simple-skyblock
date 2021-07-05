@@ -1,10 +1,10 @@
 package fr.kozen.skyrama.commands.subcommands;
 
+import fr.kozen.skyrama.Skyrama;
 import fr.kozen.skyrama.interfaces.ISubCommand;
 import fr.kozen.skyrama.objects.islands.Island;
 import fr.kozen.skyrama.objects.islands.IslandDao;
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
 public class InviteDenyCommand implements ISubCommand {
@@ -35,15 +35,15 @@ public class InviteDenyCommand implements ISubCommand {
             if(!island.getInvites().isEmpty() && island.getInvites().get(player) != null) {
 
                 island.getInvites().remove(player);
-                player.sendMessage(ChatColor.RED + "You declined the " + target.getName() + " island invitation.");
-                target.sendMessage(ChatColor.RED + player.getName() + " declined your invitation");
+                player.sendMessage(Skyrama.getLocaleManager().getString("player-decline-invitation").replace("{0}", target.getName()));
+                target.sendMessage(Skyrama.getLocaleManager().getString("player-decline-your-invitation").replace("{0}", player.getName()));
 
             } else {
-                player.sendMessage(ChatColor.RED + args[1] + " never invited you on his island.");
+                player.sendMessage(Skyrama.getLocaleManager().getString("player-no-invited").replace("{0}", args[1]));
             }
 
         } else {
-            player.sendMessage(ChatColor.RED + args[1] + " is not online.");
+            player.sendMessage(Skyrama.getLocaleManager().getString("player-offline").replace("{0}", args[1]));
         }
 
     }

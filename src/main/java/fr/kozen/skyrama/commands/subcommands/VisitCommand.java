@@ -5,7 +5,6 @@ import fr.kozen.skyrama.interfaces.ISubCommand;
 import fr.kozen.skyrama.objects.islands.IslandDao;
 
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 
@@ -41,11 +40,11 @@ public class VisitCommand implements ISubCommand {
         }
 
         if(target != null && IslandDao.haveIsland(target)) {
-            player.sendMessage(ChatColor.GREEN + "Teleporting to "+target.getName()+" island...");
+            player.sendMessage(Skyrama.getLocaleManager().getString("player-visit-island").replace("{0}", target.getName()));
             IslandDao.getIslandByPlayer(target).getSpawn().setWorld(Bukkit.getWorld((String) Skyrama.getPlugin(Skyrama.class).getConfig().get("general.world")));
             player.teleport(IslandDao.getIslandByPlayer(target).getSpawn());
         } else {
-            player.sendMessage(ChatColor.RED + args[1] + " don't exist or don't have an island.");
+            player.sendMessage(Skyrama.getLocaleManager().getString("player-offline-island").replace("{0}", args[1]));
         }
 
     }

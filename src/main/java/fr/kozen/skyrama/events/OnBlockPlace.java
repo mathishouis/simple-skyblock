@@ -4,7 +4,6 @@ import fr.kozen.skyrama.Skyrama;
 import org.bukkit.ChatColor;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 
 public class OnBlockPlace implements Listener {

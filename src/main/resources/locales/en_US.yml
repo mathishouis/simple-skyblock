@@ -1,0 +1,29 @@
+player-offline: §c{0} is not online.
+player-offline-island: §c{0} is not online or don't have an island.
+
+# ISLAND INVITE
+player-already-invited: §c{0} already invited {1}.
+player-already-on-island: §c{0} is already on your island.
+
+# ISLAND CREATE
+player-already-have-island: §cYou already have an island!
+
+# ISLAND HOME
+player-no-island: §cYou don't have an island!
+player-teleport-island: §aTeleporting to island...
+
+# ISLAND INVITE ACCEPT
+player-join-island: §a{0} joined your island!
+player-join-island-success: §aYou joined {0} island with success!
+player-no-invited: §c{0} never invited you on his island.
+
+# ISLAND INVITE DENY
+player-decline-invitation: §cYou declined the {0} island invitation.
+player-decline-your-invitation: §c{0} declined your invitation.
+
+# ISLAND SETSPAWN
+setspawn-out-island: §cYou can't place your spawn out of your island.
+setspawn-success: §aNew spawn set with success!
+
+# ISLAND VISIT
+player-visit-island: §aTeleporting to {0} island...

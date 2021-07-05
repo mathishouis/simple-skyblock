@@ -8,7 +8,6 @@ import net.md_5.bungee.api.chat.ClickEvent;
 import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
-import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 
 public class InviteCommand implements ISubCommand {
@@ -37,7 +36,7 @@ public class InviteCommand implements ISubCommand {
             Island island = IslandDao.getIslandByPlayer(player);
 
             if(IslandDao.haveIsland(target) && IslandDao.getIslandByPlayer(target) == island) {
-                player.sendMessage(ChatColor.RED + target.getName() + " is already on your island.");
+                player.sendMessage(Skyrama.getLocaleManager().getString("player-already-on-island").replace("{0}", target.getName()));
                 return;
             }
 
@@ -61,10 +60,10 @@ public class InviteCommand implements ISubCommand {
 
                 island.getInvites().put(target, player);
             } else {
-                player.sendMessage(ChatColor.RED + island.getInvites().get(target).getName() + " already invited " + target.getName());
+                player.sendMessage(Skyrama.getLocaleManager().getString("player-already-invited").replace("{0}", island.getInvites().get(target).getName()).replace("{1}", target.getName()));
             }
         } else {
-            player.sendMessage(ChatColor.RED + args[1] + " is not online.");
+            player.sendMessage(Skyrama.getLocaleManager().getString("player-offline").replace("{0}", args[1]));
         }
 
     }
