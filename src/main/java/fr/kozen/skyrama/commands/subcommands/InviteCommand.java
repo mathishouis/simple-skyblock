@@ -36,6 +36,11 @@ public class InviteCommand implements ISubCommand {
 
             Island island = IslandDao.getIslandByPlayer(player);
 
+            if(IslandDao.haveIsland(target) && IslandDao.getIslandByPlayer(target) == island) {
+                player.sendMessage(ChatColor.RED + target.getName() + " is already on your island.");
+                return;
+            }
+
             if(island.getInvites() != null && island.getInvites().get(target) == null) {
                 player.sendMessage(ChatColor.GREEN + "Sending an invitation to "+target.getName()+"...");
                 target.sendMessage(ChatColor.GREEN + " ");
