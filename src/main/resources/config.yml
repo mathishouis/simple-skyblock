@@ -44,3 +44,8 @@ island:
   # Enable PVP with island visitors
   pvpIslandVisitor: false
 
+  # Enable spawn on island when login
+  spawnIslandLogin: true
+
+  # Enable respawn on island when player die
+  respawnIsland: true

@@ -70,6 +70,8 @@ public final class Skyrama extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new OnPlayerDamage(), this);
         getServer().getPluginManager().registerEvents(new OnEntityDamageByEntity(), this);
         getServer().getPluginManager().registerEvents(new OnBlockClick(), this);
+        getServer().getPluginManager().registerEvents(new OnPlayerJoin(), this);
+        getServer().getPluginManager().registerEvents(new OnPlayerRespawn(), this);
 
     }
 
