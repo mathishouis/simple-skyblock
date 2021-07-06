@@ -28,8 +28,8 @@ public class SetSpawnCommand implements ISubCommand {
         if(!Skyrama.getGridManager().isInPlayerIsland(player, player.getLocation())) {
             player.sendMessage(Skyrama.getLocaleManager().getString("setspawn-out-island"));
         } else {
-            IslandDao.getIslandByPlayer(player).setSpawn(player.getLocation());
-            IslandDao.save(IslandDao.getIslandByPlayer(player));
+            Skyrama.getIslandManager().getPlayerIsland(player).setSpawn(player.getLocation());
+            IslandDao.save(Skyrama.getIslandManager().getPlayerIsland(player));
             player.sendMessage(Skyrama.getLocaleManager().getString("setspawn-success").replace("{0}", args[1]));
         }
 

@@ -39,10 +39,10 @@ public class VisitCommand implements ISubCommand {
             }
         }
 
-        if(target != null && IslandDao.haveIsland(target)) {
+        if(target != null && Skyrama.getIslandManager().getPlayerIsland(player) != null) {
             player.sendMessage(Skyrama.getLocaleManager().getString("player-visit-island").replace("{0}", target.getName()));
-            IslandDao.getIslandByPlayer(target).getSpawn().setWorld(Bukkit.getWorld((String) Skyrama.getPlugin(Skyrama.class).getConfig().get("general.world")));
-            player.teleport(IslandDao.getIslandByPlayer(target).getSpawn());
+            Skyrama.getIslandManager().getPlayerIsland(target).getSpawn().setWorld(Bukkit.getWorld((String) Skyrama.getPlugin(Skyrama.class).getConfig().get("general.world")));
+            player.teleport(Skyrama.getIslandManager().getPlayerIsland(target).getSpawn());
         } else {
             player.sendMessage(Skyrama.getLocaleManager().getString("player-offline-island").replace("{0}", args[1]));
         }

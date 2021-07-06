@@ -25,7 +25,7 @@ public class CreateCommand implements ISubCommand {
     @Override
     public void perform(Player player, String[] args) {
 
-        if(!IslandDao.haveIsland(player)) {
+        if(Skyrama.getIslandManager().getPlayerIsland(player) == null) {
             Skyrama.getIslandManager().create(player);
         } else {
             player.sendMessage(Skyrama.getLocaleManager().getString("player-already-have-island"));

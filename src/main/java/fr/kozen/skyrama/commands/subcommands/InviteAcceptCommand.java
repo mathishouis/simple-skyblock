@@ -4,6 +4,7 @@ import fr.kozen.skyrama.Skyrama;
 import fr.kozen.skyrama.interfaces.ISubCommand;
 import fr.kozen.skyrama.objects.islands.Island;
 import fr.kozen.skyrama.objects.islands.IslandDao;
+import fr.kozen.skyrama.types.Rank;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
@@ -30,15 +31,15 @@ public class InviteAcceptCommand implements ISubCommand {
         if(Bukkit.getPlayer(args[1]) != null) {
             Player target = Bukkit.getPlayer(args[1]);
 
-            Island newIsland = IslandDao.getIslandByPlayer(target);
+            Island newIsland = Skyrama.getIslandManager().getPlayerIsland(target);
 
             if(!newIsland.getInvites().isEmpty() && newIsland.getInvites().get(player) != null) {
 
-                Island island = IslandDao.getIslandByPlayer(player);
+                Island island = Skyrama.getIslandManager().getPlayerIsland(player);
 
                 island.getPlayers().remove(player);
                 island.getInvites().remove(player);
-                newIsland.getPlayers().add(player);
+                newIsland.getPlayers().put(player, Rank.fromInt(1));
 
                 IslandDao.setPlayerIsland(player, newIsland);
 

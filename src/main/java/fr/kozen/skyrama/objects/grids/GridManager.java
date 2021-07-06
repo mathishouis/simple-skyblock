@@ -29,7 +29,7 @@ public class GridManager {
     public boolean isInPlayerIsland(Player player, Location location) {
 
         if(location.getWorld() == Bukkit.getWorld((String) Skyrama.getPlugin(Skyrama.class).getConfig().get("general.world"))) {
-            Island island = IslandDao.getIslandByPlayer(player);
+            Island island = Skyrama.getIslandManager().getPlayerIsland(player);
             Location center = getCenterFromId(island.getId());
 
             int minX = center.getBlockX() - 256;

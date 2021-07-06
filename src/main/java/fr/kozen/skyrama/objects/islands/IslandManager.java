@@ -4,27 +4,28 @@ import fr.kozen.skyrama.Skyrama;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.block.Biome;
 import org.bukkit.entity.Player;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class IslandManager {
 
-    public Map<Integer, Island> islands;
+    public Set<Island> islands;
 
     public IslandManager() { this.initialise(); };
 
     public void initialise() {
 
-        this.islands = new HashMap<>();
+        this.islands = new HashSet<>();
 
     }
 
     public void loadIslands() {
 
         this.islands = IslandDao.getIslands();
+        this.islands.forEach(island -> Bukkit.getLogger().info(String.valueOf(island.getId())));
 
     }
 
@@ -41,7 +42,7 @@ public class IslandManager {
         Bukkit.getLogger().info("z: " + spawn.getZ());
 
         Island island = new Island(islandId, Biome.BADLANDS, 0, spawn);
-        this.islands.put(islandId, island);
+        this.islands.add(island);
 
         owner.sendMessage(ChatColor.GREEN + "Creating island...");
 
@@ -51,6 +52,24 @@ public class IslandManager {
 
         Skyrama.getSchematicManager().load((String) Skyrama.getPlugin(Skyrama.class).getConfig().get("island.schematic"), Bukkit.getWorld((String) Skyrama.getPlugin(Skyrama.class).getConfig().get("general.world")), location.getX(), location.getY(), location.getZ());
         owner.teleport(spawn);
+
+    }
+
+    public Island getIslandOwnedBy(OfflinePlayer player) {
+
+        return this.getIslands().stream().filter(island -> island.getOwner().equals(player)).findAny().orElse(null);
+
+    }
+
+    public Island getPlayerIsland(OfflinePlayer player) {
+
+        return this.getIslands().stream().filter(island -> island.getPlayers().containsKey(player)).findAny().orElse(null);
+
+    }
+
+    public Set<Island> getIslands() {
+
+        return this.islands;
 
     }
 

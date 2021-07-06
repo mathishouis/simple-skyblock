@@ -1,6 +1,9 @@
 package fr.kozen.skyrama.objects.islands;
 
+import fr.kozen.skyrama.types.Rank;
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.block.Biome;
 import org.bukkit.entity.Player;
 
@@ -13,7 +16,7 @@ public class Island {
     private int id;
     private Biome biome;
     private int extensionLevel;
-    private List<Player> players;
+    private Map<OfflinePlayer, Rank> players;
     private Location spawn;
     private Map<Player, Player> invites;
 
@@ -25,6 +28,7 @@ public class Island {
         this.players = IslandDao.getPlayers(id);
         this.spawn = spawn;
         this.invites = new HashMap<>();
+        //Bukkit.getLogger().info(this.getOwner().getName());
 
     }
 
@@ -46,7 +50,19 @@ public class Island {
 
     }
 
-    public List<Player> getPlayers() {
+    public OfflinePlayer getOwner() {
+
+        return this.getPlayers().entrySet().stream().filter(entry -> entry.getValue().equals(Rank.OWNER)).findAny().get().getKey();
+
+    }
+
+    public Rank getRank(OfflinePlayer player) {
+
+        return this.getPlayers().get(player);
+
+    }
+
+    public Map<OfflinePlayer, Rank> getPlayers() {
 
         return this.players;
 

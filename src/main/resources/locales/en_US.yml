@@ -27,3 +27,5 @@ setspawn-success: §aNew spawn set with success!
 
 # ISLAND VISIT
 player-visit-island: §aTeleporting to {0} island...
+
+player-no-owner: §cYou are not the owner of this island!

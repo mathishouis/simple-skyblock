@@ -1,8 +1,10 @@
 package fr.kozen.skyrama.objects.islands;
 
 import fr.kozen.skyrama.Skyrama;
+import fr.kozen.skyrama.types.Rank;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.block.Biome;
 import org.bukkit.entity.Player;
 
@@ -11,11 +13,11 @@ import java.util.*;
 
 public class IslandDao {
 
-    public static Map<Integer, Island> getIslands() {
+    public static Set<Island> getIslands() {
 
         Bukkit.getLogger().info("Gettings islands...");
 
-        Map<Integer, Island> islands = new HashMap<>();
+        Set<Island> islands = new HashSet<>();
 
         try (Connection conn = Skyrama.getSqlManager().getConnection(); PreparedStatement stmt = conn.prepareStatement(
                 "SELECT * FROM islands"
@@ -28,7 +30,7 @@ public class IslandDao {
                         resultSet.getInt("extension_level"),
                         new Location(Bukkit.getWorld((String) Skyrama.getPlugin(Skyrama.class).getConfig().get("general.world")), resultSet.getFloat("spawn_x"), resultSet.getFloat("spawn_y"), resultSet.getFloat("spawn_z"), resultSet.getFloat("spawn_yaw"), resultSet.getFloat("spawn_pitch")));
 
-                islands.put(resultSet.getInt("id"), island);
+                islands.add(island);
             }
 
         } catch (SQLException e) {
@@ -38,9 +40,9 @@ public class IslandDao {
         return islands;
     }
 
-    public static List<Player> getPlayers(int islandId) {
+    public static Map<OfflinePlayer, Rank> getPlayers(int islandId) {
 
-        List<Player> players = new ArrayList<>();
+        Map<OfflinePlayer, Rank> players = new HashMap<>();
 
         try (Connection conn = Skyrama.getSqlManager().getConnection(); PreparedStatement stmt = conn.prepareStatement(
                 "SELECT * FROM islands_users WHERE island_id = ?"
@@ -48,7 +50,8 @@ public class IslandDao {
             stmt.setInt(1, islandId);
             ResultSet resultSet = stmt.executeQuery();
             while (resultSet.next()) {
-                players.add(Bukkit.getPlayer(UUID.fromString(resultSet.getString("uuid"))));
+                Bukkit.getLogger().info(Bukkit.getOfflinePlayer(UUID.fromString(resultSet.getString("uuid"))).getName());
+                players.put(Bukkit.getOfflinePlayer(UUID.fromString(resultSet.getString("uuid"))), Rank.fromInt(resultSet.getInt("rank")));
             }
 
         } catch (SQLException e) {
@@ -139,41 +142,4 @@ public class IslandDao {
 
     }
 
-    public static boolean haveIsland(Player player) {
-
-        try (Connection conn = Skyrama.getSqlManager().getConnection(); PreparedStatement stmt = conn.prepareStatement(
-                "SELECT * FROM islands_users WHERE uuid = ?"
-        )) {
-            stmt.setString(1, player.getUniqueId().toString());
-            ResultSet resultSet = stmt.executeQuery();
-            if (resultSet.next()) {
-                return true;
-            }
-
-        } catch (SQLException e) {
-            Bukkit.getLogger().info("Something went wrong. " + e);
-        }
-
-        return false;
-
-    }
-
-    public static Island getIslandByPlayer(Player player) {
-
-        try (Connection conn = Skyrama.getSqlManager().getConnection(); PreparedStatement stmt = conn.prepareStatement(
-                "SELECT * FROM islands_users WHERE uuid = ?"
-        )) {
-            stmt.setString(1, player.getUniqueId().toString());
-            ResultSet resultSet = stmt.executeQuery();
-            if (resultSet.next()) {
-                return Skyrama.getIslandManager().islands.get(resultSet.getInt("island_id"));
-            }
-
-        } catch (SQLException e) {
-            Bukkit.getLogger().info("Something went wrong. " + e);
-        }
-
-        return null;
-
-    }
 }

@@ -30,7 +30,7 @@ public class InviteDenyCommand implements ISubCommand {
         if(Bukkit.getPlayer(args[1]) != null) {
             Player target = Bukkit.getPlayer(args[1]);
 
-            Island island = IslandDao.getIslandByPlayer(target);
+            Island island = Skyrama.getIslandManager().getPlayerIsland(target);
 
             if(!island.getInvites().isEmpty() && island.getInvites().get(player) != null) {
 
