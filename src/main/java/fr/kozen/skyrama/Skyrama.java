@@ -34,8 +34,13 @@ public final class Skyrama extends JavaPlugin {
 
     public void initConfig() {
 
+        // Load default config
         getConfig().options().copyDefaults(true);
-        saveConfig();
+        saveDefaultConfig();
+        // Load default locales
+        saveResource("locales/en_US.yml", false);
+        // Load default schematics
+        saveResource("schematics/island.schematic", false);
 
     }
 
