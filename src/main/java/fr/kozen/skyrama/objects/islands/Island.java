@@ -62,6 +62,21 @@ public class Island {
 
     }
 
+    public void removePlayer(OfflinePlayer player) {
+
+        this.getPlayers().remove(player);
+        IslandDao.removePlayer(player);
+
+    }
+
+    public void addPlayer(OfflinePlayer player, Rank rank) {
+
+        this.getPlayers().put(player, rank);
+        IslandDao.addPlayer(player, this, rank);
+
+    }
+
+
     public Map<OfflinePlayer, Rank> getPlayers() {
 
         return this.players;

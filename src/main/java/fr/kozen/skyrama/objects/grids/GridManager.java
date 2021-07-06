@@ -26,24 +26,29 @@ public class GridManager {
 
     }
 
-    public boolean isInPlayerIsland(Player player, Location location) {
+    public int isInPlayerIsland(Player player, Location location) {
 
-        if(location.getWorld() == Bukkit.getWorld((String) Skyrama.getPlugin(Skyrama.class).getConfig().get("general.world"))) {
-            Island island = Skyrama.getIslandManager().getPlayerIsland(player);
-            Location center = getCenterFromId(island.getId());
+        if(location.getWorld() == Bukkit.getWorld(Skyrama.getPlugin(Skyrama.class).getConfig().getString("general.world"))) {
+            if(Skyrama.getIslandManager().getPlayerIsland(player) != null) {
+                Island island = Skyrama.getIslandManager().getPlayerIsland(player);
+                Location center = getCenterFromId(island.getId());
 
-            int minX = center.getBlockX() - 256;
-            int maxX = center.getBlockX() + 256;
+                int minX = center.getBlockX() - 256;
+                int maxX = center.getBlockX() + 256;
 
-            int minZ = center.getBlockZ() - 256;
-            int maxZ = center.getBlockZ() + 256;
+                int minZ = center.getBlockZ() - 256;
+                int maxZ = center.getBlockZ() + 256;
 
-            if (location.getBlockX() >= minX && location.getBlockX() <= maxX) {
-                return location.getBlockZ() >= minZ && location.getBlockZ() <= maxZ;
+                if (location.getBlockX() >= minX && location.getBlockX() <= maxX) {
+                    if(location.getBlockZ() >= minZ && location.getBlockZ() <= maxZ) {
+                        return 2;
+                    }
+                }
+                return 1;
             }
-            return false;
+            return 1;
         }
-        return false;
+        return 0;
 
 
     }

@@ -110,13 +110,26 @@ public class IslandDao {
 
     }
 
-    public static void addPlayer(Player player, int islandId, int rank) {
+    public static void addPlayer(OfflinePlayer player, Island island, Rank rank) {
 
         try (Connection conn = Skyrama.getSqlManager().getConnection(); PreparedStatement stmt = conn.prepareStatement(
                 "INSERT INTO islands_users(uuid, island_id, rank) VALUES(?, ?, ?);")) {
             stmt.setString(1, player.getUniqueId().toString());
-            stmt.setInt(2, islandId);
-            stmt.setInt(3, rank);
+            stmt.setInt(2, island.getId());
+            stmt.setInt(3, rank.rank);
+            stmt.execute();
+
+        } catch (SQLException e) {
+            Bukkit.getLogger().info("Something went wrong. " + e);
+        }
+
+    }
+
+    public static void removePlayer(OfflinePlayer player) {
+
+        try (Connection conn = Skyrama.getSqlManager().getConnection(); PreparedStatement stmt = conn.prepareStatement(
+                "DELETE FROM islands_users WHERE uuid = ?;")) {
+            stmt.setString(1, player.getUniqueId().toString());
             stmt.execute();
 
         } catch (SQLException e) {

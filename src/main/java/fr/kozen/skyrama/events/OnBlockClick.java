@@ -12,7 +12,7 @@ public class OnBlockClick implements Listener {
     public void onBlockClick(PlayerInteractEvent event) {
 
         if (event.getAction() == Action.RIGHT_CLICK_BLOCK) {
-            if (!Skyrama.getGridManager().isInPlayerIsland(event.getPlayer(), event.getPlayer().getLocation())) {
+            if (Skyrama.getGridManager().isInPlayerIsland(event.getPlayer(), event.getPlayer().getLocation()) == 1) {
                 event.setCancelled(true);
             }
         }

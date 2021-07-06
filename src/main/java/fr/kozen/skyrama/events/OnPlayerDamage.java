@@ -14,7 +14,7 @@ public class OnPlayerDamage implements Listener {
 
             Player player = (Player) event.getEntity();
 
-            if(!Skyrama.getGridManager().isInPlayerIsland(player, player.getLocation())) {
+            if(Skyrama.getGridManager().isInPlayerIsland(player, player.getLocation()) == 1) {
                 event.setCancelled(true);
             }
 

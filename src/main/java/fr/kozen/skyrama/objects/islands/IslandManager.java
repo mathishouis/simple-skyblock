@@ -1,6 +1,7 @@
 package fr.kozen.skyrama.objects.islands;
 
 import fr.kozen.skyrama.Skyrama;
+import fr.kozen.skyrama.types.Rank;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
@@ -29,13 +30,12 @@ public class IslandManager {
 
     }
 
-    public void create(Player owner) {
+    public void create(OfflinePlayer owner) {
 
         int islandId = IslandDao.addIsland();
-        IslandDao.addPlayer(owner, islandId, 2);
 
         Location location = Skyrama.getGridManager().getCenterFromId(islandId);
-        Location spawn = new Location(Bukkit.getWorld((String) Skyrama.getPlugin(Skyrama.class).getConfig().get("general.world")), location.getBlockX(), 100, location.getBlockZ() + 2);
+        Location spawn = new Location(Bukkit.getWorld(Skyrama.getPlugin(Skyrama.class).getConfig().getString("general.world")), location.getBlockX(), 100, location.getBlockZ() + 2);
 
         Bukkit.getLogger().info("x: " + spawn.getX());
         Bukkit.getLogger().info("y: " + spawn.getY());
@@ -43,15 +43,16 @@ public class IslandManager {
 
         Island island = new Island(islandId, Biome.BADLANDS, 0, spawn);
         this.islands.add(island);
+        island.addPlayer(owner, Rank.OWNER);
 
-        owner.sendMessage(ChatColor.GREEN + "Creating island...");
+        owner.getPlayer().sendMessage(ChatColor.GREEN + "Creating island...");
 
         island.setSpawn(spawn);
         island.save();
 
 
-        Skyrama.getSchematicManager().load((String) Skyrama.getPlugin(Skyrama.class).getConfig().get("island.schematic"), Bukkit.getWorld((String) Skyrama.getPlugin(Skyrama.class).getConfig().get("general.world")), location.getX(), location.getY(), location.getZ());
-        owner.teleport(spawn);
+        Skyrama.getSchematicManager().load(Skyrama.getPlugin(Skyrama.class).getConfig().getString("island.schematic"), location.getX(), location.getY(), location.getZ());
+        owner.getPlayer().teleport(spawn);
 
     }
 

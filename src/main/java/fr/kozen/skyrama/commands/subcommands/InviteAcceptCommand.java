@@ -35,13 +35,16 @@ public class InviteAcceptCommand implements ISubCommand {
 
             if(!newIsland.getInvites().isEmpty() && newIsland.getInvites().get(player) != null) {
 
-                Island island = Skyrama.getIslandManager().getPlayerIsland(player);
+                if(Skyrama.getIslandManager().getPlayerIsland(player) != null) {
 
-                island.getPlayers().remove(player);
-                island.getInvites().remove(player);
-                newIsland.getPlayers().put(player, Rank.fromInt(1));
+                    Island island = Skyrama.getIslandManager().getPlayerIsland(player);
 
-                IslandDao.setPlayerIsland(player, newIsland);
+                    island.removePlayer(player);
+                    newIsland.addPlayer(player, Rank.fromInt(1));
+
+                }
+
+                newIsland.addPlayer(player, Rank.fromInt(1));
 
                 target.sendMessage(Skyrama.getLocaleManager().getString("player-join-island").replace("{0}", player.getName()));
 
