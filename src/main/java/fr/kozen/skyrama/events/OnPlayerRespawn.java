@@ -6,6 +6,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
+import org.bukkit.scheduler.BukkitRunnable;
 
 public class OnPlayerRespawn implements Listener {
 
@@ -14,9 +15,14 @@ public class OnPlayerRespawn implements Listener {
 
         if(Skyrama.getPlugin(Skyrama.class).getConfig().getBoolean("island.respawnIsland")) {
             if (Skyrama.getIslandManager().getPlayerIsland(event.getPlayer()) != null) {
-                Skyrama.getIslandManager().getPlayerIsland(event.getPlayer()).getSpawn().setWorld(Bukkit.getWorld((String) Skyrama.getPlugin(Skyrama.class).getConfig().get("general.world")));
-                event.setRespawnLocation(Skyrama.getIslandManager().getPlayerIsland(event.getPlayer()).getSpawn());
-                event.getPlayer().teleport(Skyrama.getIslandManager().getPlayerIsland(event.getPlayer()).getSpawn());
+                new BukkitRunnable() {
+                    public void run() {
+                        try {
+                            Skyrama.getIslandManager().getPlayerIsland(event.getPlayer()).getSpawn().setWorld(Bukkit.getWorld((String) Skyrama.getPlugin(Skyrama.class).getConfig().get("general.world")));
+                            event.getPlayer().teleport(Skyrama.getIslandManager().getPlayerIsland(event.getPlayer()).getSpawn());
+                        } catch (Exception ex) {}
+                    }
+                }.runTaskLater(Skyrama.getPlugin(Skyrama.class), 2);
             }
         }
 
