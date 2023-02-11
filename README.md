@@ -30,7 +30,6 @@ This plugin was originally made for `Spigot 1.17` but you can totally edit it to
 
 ## Permissions
 
-Comming soon
 | Permissions       | Description  |
 | ------------- |-------------|
 | `skyrama.*` | All Permissions |
