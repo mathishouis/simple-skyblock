@@ -28,25 +28,28 @@ public class VisitCommand implements ISubCommand {
     @Override
     public void perform(Player player, String[] args) {
 
-        Player target = null;
 
-        if(Bukkit.getPlayer(args[1]) != null) {
-            target = Bukkit.getPlayer(args[1]);
-        } else {
-            OfflinePlayer offlinePlayer = Skyrama.getPlugin(Skyrama.class).getServer().getOfflinePlayer(args[1]);
-            if(offlinePlayer.hasPlayedBefore()) {
-                target = offlinePlayer.getPlayer();
+        if(player.hasPermission((Skyrama.getPermissionsManager().getString("island-perm-visit"))) || player.hasPermission(Skyrama.getPermissionsManager().getString("island-perm-admin"))){
+            Player target = null;
+
+            if(Bukkit.getPlayer(args[1]) != null) {
+                target = Bukkit.getPlayer(args[1]);
+            } else {
+                OfflinePlayer offlinePlayer = Skyrama.getPlugin(Skyrama.class).getServer().getOfflinePlayer(args[1]);
+                if(offlinePlayer.hasPlayedBefore()) {
+                    target = offlinePlayer.getPlayer();
+                }
             }
-        }
 
-        if(target != null && Skyrama.getIslandManager().getPlayerIsland(player) != null) {
-            player.sendMessage(Skyrama.getLocaleManager().getString("player-visit-island").replace("{0}", target.getName()));
-            Skyrama.getIslandManager().getPlayerIsland(target).getSpawn().setWorld(Bukkit.getWorld((String) Skyrama.getPlugin(Skyrama.class).getConfig().get("general.world")));
-            player.teleport(Skyrama.getIslandManager().getPlayerIsland(target).getSpawn());
-        } else {
-            player.sendMessage(Skyrama.getLocaleManager().getString("player-offline-island").replace("{0}", args[1]));
+            if(target != null && Skyrama.getIslandManager().getPlayerIsland(player) != null) {
+                player.sendMessage(Skyrama.getLocaleManager().getString("player-visit-island").replace("{0}", target.getName()));
+                Skyrama.getIslandManager().getPlayerIsland(target).getSpawn().setWorld(Bukkit.getWorld((String) Skyrama.getPlugin(Skyrama.class).getConfig().get("general.world")));
+                player.teleport(Skyrama.getIslandManager().getPlayerIsland(target).getSpawn());
+            } else {
+                player.sendMessage(Skyrama.getLocaleManager().getString("player-offline-island").replace("{0}", args[1]));
+            }
+        }else{
+            player.sendMessage(Skyrama.getLocaleManager().getString("player-noperm"));
         }
-
     }
-
 }

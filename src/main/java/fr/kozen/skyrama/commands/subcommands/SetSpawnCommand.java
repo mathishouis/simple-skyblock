@@ -25,14 +25,16 @@ public class SetSpawnCommand implements ISubCommand {
     @Override
     public void perform(Player player, String[] args) {
 
-        if(Skyrama.getGridManager().isInPlayerIsland(player, player.getLocation()) != 2) {
-            player.sendMessage(Skyrama.getLocaleManager().getString("setspawn-out-island"));
-        } else {
-            Skyrama.getIslandManager().getPlayerIsland(player).setSpawn(player.getLocation());
-            IslandDao.save(Skyrama.getIslandManager().getPlayerIsland(player));
-            player.sendMessage(Skyrama.getLocaleManager().getString("setspawn-success"));
+        if(player.hasPermission((Skyrama.getPermissionsManager().getString("island-perm-setspawn"))) || player.hasPermission(Skyrama.getPermissionsManager().getString("island-perm-admin"))){
+            if(Skyrama.getGridManager().isInPlayerIsland(player, player.getLocation()) != 2) {
+                player.sendMessage(Skyrama.getLocaleManager().getString("setspawn-out-island"));
+            } else {
+                Skyrama.getIslandManager().getPlayerIsland(player).setSpawn(player.getLocation());
+                IslandDao.save(Skyrama.getIslandManager().getPlayerIsland(player));
+                player.sendMessage(Skyrama.getLocaleManager().getString("setspawn-success"));
+            }
+        }else{
+            player.sendMessage(Skyrama.getLocaleManager().getString("player-noperm"));
         }
-
     }
-
 }

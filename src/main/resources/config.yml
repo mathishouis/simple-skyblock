@@ -15,6 +15,7 @@ mysql:
 general:
 
   # Language of the plugin (location: './locales/en_US.yml')
+  # Avaible: en_US , de_DE
   locale: en_US
 
   # Name of the world where floating islands spawn

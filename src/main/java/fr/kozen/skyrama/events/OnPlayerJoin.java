@@ -19,7 +19,5 @@ public class OnPlayerJoin implements Listener {
                 event.getPlayer().teleport(Skyrama.getIslandManager().getPlayerIsland(event.getPlayer()).getSpawn());
             }
         }
-
     }
-
 }

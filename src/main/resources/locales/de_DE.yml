@@ -1,0 +1,40 @@
+# PLAYER NO PERMISSIONS
+player-noperm: §cKeine Berechtigung!
+
+# PLAYER NOT ONLINE OR HAS ISLAND
+player-offline: §c{0} ist nicht Online.
+player-offline-island: §c{0} ist nicht online oder hat keine Insel.
+
+# ISLAND INVITE
+player-already-invited: §c{0} wurde bereits eingeladen {1}.
+player-already-on-island: §c{0} ist schon in deiner Insel.
+
+# ISLAND CREATE
+player-already-have-island: §cDu besitzt bereits eine Insel!
+
+# ISLAND HOME
+player-no-island: §cDu hast keine Insel!
+player-teleport-island: §aTeleportation zur Insel...
+
+# ISLAND INVITE ACCEPT
+player-join-island: §a{0} ist deiner Insel beigetreten!
+player-join-island-success: §aDu bist der Insel {0} beigetreten!
+player-no-invited: §c{0} hat dir keine Einladung gesendet.
+
+# ISLAND INVITE DENY
+player-decline-invitation: §cDu hast die Insel einladung {0} ablegehnt.
+player-decline-your-invitation: §c{0} hat deine Inseleinladung abgelehnt.
+
+# ISLAND SETSPAWN
+setspawn-out-island: §cDu kannst den Inselspawn nicht ausserhalb der Insel setzen!.
+setspawn-success: §aNeuer Inselspawnpunkt gesetzt!
+
+# ISLAND VISIT
+player-visit-island: §aTeleportierung zur {0} Insel...
+
+player-no-owner: §cDu bist nicht Inhaber der Insel!
+player-leave-island: §aDu hast die Insel verlassen!
+
+# OTHER ISLAND BREAK BLOCKS
+player-break: §cDu kannst keine Blöcke auf einer anderen Insel abbauen!
+player-place: §cDu kannst keine Blöcke auf einer anderen Insel platzieren!

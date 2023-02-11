@@ -29,33 +29,35 @@ public class LeaveCommand implements ISubCommand {
     @Override
     public void perform(Player player, String[] args) {
 
-        Island island = Skyrama.getIslandManager().getPlayerIsland(player);
+        if(player.hasPermission((Skyrama.getPermissionsManager().getString("island-perm-leave"))) || player.hasPermission(Skyrama.getPermissionsManager().getString("island-perm-admin"))){
+            Island island = Skyrama.getIslandManager().getPlayerIsland(player);
 
-        if(island != null) {
-            if(island.getRank(player).equals(Rank.OWNER)) {
-                island.removePlayer(player);
-                player.sendMessage(ChatColor.GREEN + "You left your island and it was deleted.");
-                for(OfflinePlayer offlinePlayer : island.getPlayers().keySet()) {
-                    if(offlinePlayer.isOnline()) {
-                        Player member = offlinePlayer.getPlayer();
-                        member.sendMessage(ChatColor.RED + "" + player.getName() + " deleted the island.");
-                        island.removePlayer(member);
+            if(island != null) {
+                if(island.getRank(player).equals(Rank.OWNER)) {
+                    island.removePlayer(player);
+                    player.sendMessage(ChatColor.GREEN + "You left your island and it was deleted.");
+                    for(OfflinePlayer offlinePlayer : island.getPlayers().keySet()) {
+                        if(offlinePlayer.isOnline()) {
+                            Player member = offlinePlayer.getPlayer();
+                            member.sendMessage(ChatColor.RED + "" + player.getName() + " deleted the island.");
+                            island.removePlayer(member);
+                        }
+                    }
+                } else {
+                    island.removePlayer(player);
+                    player.sendMessage(ChatColor.GREEN + "You left the island with success.");
+                    for(OfflinePlayer offlinePlayer : island.getPlayers().keySet()) {
+                        if(offlinePlayer.isOnline()) {
+                            Player member = offlinePlayer.getPlayer();
+                            member.sendMessage(ChatColor.RED + "" + player.getName() + " left your island.");
+                        }
                     }
                 }
             } else {
-                island.removePlayer(player);
-                player.sendMessage(ChatColor.GREEN + "You left the island with success.");
-                for(OfflinePlayer offlinePlayer : island.getPlayers().keySet()) {
-                    if(offlinePlayer.isOnline()) {
-                        Player member = offlinePlayer.getPlayer();
-                        member.sendMessage(ChatColor.RED + "" + player.getName() + " left your island.");
-                    }
-                }
+                player.sendMessage(Skyrama.getLocaleManager().getString("player-no-island"));
             }
-        } else {
-            player.sendMessage(Skyrama.getLocaleManager().getString("player-no-island"));
+        }else{
+            player.sendMessage(Skyrama.getLocaleManager().getString("player-noperm"));
         }
-
     }
-
 }
