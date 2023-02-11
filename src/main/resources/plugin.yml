@@ -1,11 +1,10 @@
 name: Skyrama
 version: ${project.version}
 main: fr.kozen.skyrama.Skyrama
-api-version: 1.17
+api-version: 1.19
 authors: [ Kozen ]
-description: Skyblock plugin for Minecraft 1.17
+description: Skyblock plugin for Minecraft 1.19
 commands:
   island:
     description: Island command
     aliases: is
-
