@@ -12,10 +12,13 @@ public class OnBlockBreak implements Listener {
     public void onBlockBreak(BlockBreakEvent event) {
 
         if(Skyrama.getGridManager().isInPlayerIsland(event.getPlayer(), event.getBlock().getLocation()) == 1) {
-            event.getPlayer().sendMessage(ChatColor.RED + "You can't break block in others player island.");
-            event.setCancelled(true);
+            if(event.getPlayer().hasPermission(Skyrama.getPermissionsManager().getString("island-perm-break")) || event.getPlayer().hasPermission(Skyrama.getPermissionsManager().getString("island-perm-admin"))){
+
+                event.setCancelled(false);
+            }else{
+                event.getPlayer().sendMessage(Skyrama.getLocaleManager().getString("player-break"));
+                event.setCancelled(true);
+            }
         }
-
     }
-
 }

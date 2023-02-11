@@ -11,11 +11,7 @@ public class GridManager {
 
     public GridManager() { this.initialise(); }
 
-    public void initialise() {
-
-
-
-    }
+    public void initialise() {}
 
     public Location getCenterFromId(int id) {
 

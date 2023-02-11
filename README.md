@@ -6,11 +6,11 @@ A simple SkyBlock plugin for Spigot servers without any useless features, just t
 
 ## Version
 
-This plugin was originally made for `Spigot 1.17` but you can totally edit it to use it with others Minecraft versions.
+This plugin was originally made for `Spigot 1.19` but you can totally edit it to use it with others Minecraft versions.
 
 ## Installation
 
-1. Compile the project or download [this JAR file](https://github.com/kozennnn/simple-skyblock/releases/download/v0.1-ALPHA/skyrama-0.1-alpha.jar).
+1. Compile the project or download [this JAR file](https://github.com/kozennnn/simple-skyblock/releases/download/v0.3-ALPHA/skyrama-0.3-alpha.jar).
 2. Place the plugin into your server plugin's directory.
 3. Restart your server or reload it with the command `/reload`.
 4. You can now configure the plugin in the `config.yml` file.
@@ -30,4 +30,16 @@ This plugin was originally made for `Spigot 1.17` but you can totally edit it to
 
 ## Permissions
 
-Comming soon
+| Permissions       | Description  |
+| ------------- |-------------|
+| `skyrama.*` | All Permissions |
+| `skyrama.invite` | Invite the player to play on your island. |
+| `skyrama.invite.accept` | Accept the player invitation. |
+| `skyrama.invite.deny` | Decline the player invitation. |
+| `skyrama.create` | Create an Island. |
+| `skyrama.home` | Teleport user to his island spawn. |
+| `skyrama.visit` | Teleport to the specified player island. |
+| `skyrama.setspawn` | Change the island spawn to user position. |
+| `skyrama.admin.break` | Break Blocks on a other Island without Trust |
+| `skyrama.admin.place` | Place Blocks on a other Island without Trust |
+

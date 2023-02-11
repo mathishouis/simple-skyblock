@@ -25,7 +25,5 @@ public class OnPlayerRespawn implements Listener {
                 }.runTaskLater(Skyrama.getPlugin(Skyrama.class), 2);
             }
         }
-
     }
-
 }

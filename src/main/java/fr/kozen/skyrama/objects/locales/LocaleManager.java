@@ -20,9 +20,7 @@ public class LocaleManager {
     }
 
     public String getLocale() {
-
         return this.locale;
-
     }
 
     public String getString(String path) {
@@ -30,7 +28,4 @@ public class LocaleManager {
         return this.file.getString(path);
 
     }
-
-
-
 }

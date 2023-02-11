@@ -16,7 +16,5 @@ public class OnBlockClick implements Listener {
                 event.setCancelled(true);
             }
         }
-
     }
-
 }

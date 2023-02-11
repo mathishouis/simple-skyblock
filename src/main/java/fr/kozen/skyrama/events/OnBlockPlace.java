@@ -12,10 +12,13 @@ public class OnBlockPlace implements Listener {
     public void onBlockPlace(BlockPlaceEvent event) {
 
         if(Skyrama.getGridManager().isInPlayerIsland(event.getPlayer(), event.getPlayer().getLocation()) == 1) {
-            event.getPlayer().sendMessage(ChatColor.RED + "You can't place block in others player island.");
-            event.setCancelled(true);
+            if(event.getPlayer().hasPermission(Skyrama.getPermissionsManager().getString("island-perm-place")) || event.getPlayer().hasPermission(Skyrama.getPermissionsManager().getString("island-perm-admin"))){
+
+                event.setCancelled(false);
+            }else{
+                event.getPlayer().sendMessage(Skyrama.getLocaleManager().getString("player-place"));
+                event.setCancelled(true);
+            }
         }
-
     }
-
 }

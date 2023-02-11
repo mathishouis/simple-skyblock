@@ -19,10 +19,6 @@ public class OnEntityTarget implements Listener {
             if(Skyrama.getGridManager().isInPlayerIsland(player, player.getLocation()) == 1) {
                 event.setCancelled(true);
             }
-
         }
-
-
     }
-
 }
