@@ -3,6 +3,7 @@ package fr.kozen.skyrama.storage;
 import com.mysql.cj.jdbc.MysqlConnectionPoolDataSource;
 import com.mysql.cj.jdbc.MysqlDataSource;
 import fr.kozen.skyrama.Skyrama;
+import fr.kozen.skyrama.objects.islands.IslandDao;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -31,6 +32,10 @@ public class SqlManager {
 
     public Connection getConnection() throws SQLException {
         return dataSource.getConnection();
+    }
+
+    public void populate() {
+        IslandDao.createTables();
     }
 
 }
