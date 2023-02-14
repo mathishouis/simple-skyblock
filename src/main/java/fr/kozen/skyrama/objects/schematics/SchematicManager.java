@@ -41,7 +41,7 @@ public class SchematicManager {
         try {
             File file = new File(Skyrama.getPlugin(Skyrama.class).getDataFolder() + "/schematics/" + name + ".schem");
             ClipboardFormat format = ClipboardFormats.findByFile(file);
-            ClipboardReader reader = Objects.requireNonNull(format).getReader(Files.newInputStream(file.toPath()));
+            ClipboardReader reader = format.getReader(Files.newInputStream(file.toPath()));
             Clipboard clipboard = reader.read();
             try (EditSession editSession = WorldEdit.getInstance().getEditSessionFactory().getEditSession(BukkitAdapter.adapt(Objects.requireNonNull(Bukkit.getWorld((String) Skyrama.getPlugin(Skyrama.class).getConfig().get("general.world")))), -1)) {
                 Operation operation = new ClipboardHolder(clipboard)

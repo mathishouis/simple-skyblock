@@ -58,7 +58,13 @@ public class Island {
 
     public Rank getRank(OfflinePlayer player) {
 
-        return this.getPlayers().get(player);
+        return this.getPlayers().get(this.getPlayer(player));
+
+    }
+
+    public OfflinePlayer getPlayer(OfflinePlayer player) {
+
+        return this.getPlayers().keySet().stream().filter(offlinePlayer -> offlinePlayer.getUniqueId().equals(player.getUniqueId())).findAny().orElse(null);
 
     }
 
