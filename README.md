@@ -30,16 +30,15 @@ This plugin was originally made for `Spigot 1.19` but you can totally edit it to
 
 ## Permissions
 
-| Permissions       | Description  |
-| ------------- |-------------|
-| `skyrama.*` | All Permissions |
-| `skyrama.invite` | Invite the player to play on your island. |
-| `skyrama.invite.accept` | Accept the player invitation. |
-| `skyrama.invite.deny` | Decline the player invitation. |
-| `skyrama.create` | Create an Island. |
-| `skyrama.home` | Teleport user to his island spawn. |
-| `skyrama.visit` | Teleport to the specified player island. |
-| `skyrama.setspawn` | Change the island spawn to user position. |
-| `skyrama.admin.break` | Break Blocks on a other Island without Trust |
-| `skyrama.admin.place` | Place Blocks on a other Island without Trust |
+| Permissions                     | Description  |
+|---------------------------------|-------------|
+| `skyrama.command.invite`        | Invite the player to play on your island. |
+| `skyrama.command.invite.accept` | Accept the player invitation. |
+| `skyrama.command.invite.deny`   | Decline the player invitation. |
+| `skyrama.command.create`        | Create an Island. |
+| `skyrama.command.home`          | Teleport user to his island spawn. |
+| `skyrama.command.visit`         | Teleport to the specified player island. |
+| `skyrama.command.setspawn`      | Change the island spawn to user position. |
+| `skyrama.event.break`           | Break Blocks on a other Island without Trust |
+| `skyrama.event.place`           | Place Blocks on a other Island without Trust |
 

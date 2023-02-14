@@ -5,6 +5,9 @@ import fr.kozen.skyrama.interfaces.ISubCommand;
 import fr.kozen.skyrama.objects.islands.IslandDao;
 import org.bukkit.entity.Player;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class CreateCommand implements ISubCommand {
 
     @Override
@@ -18,21 +21,22 @@ public class CreateCommand implements ISubCommand {
     }
 
     @Override
+    public String getPermission() { return "skyrama.command.create"; }
+
+    @Override
     public String getSyntax() {
         return "/island create";
     }
 
     @Override
-    public void perform(Player player, String[] args) {
+    public List<String> getArgs() { return Arrays.asList(); }
 
-        if(player.hasPermission((Skyrama.getPermissionsManager().getString("island-perm-create"))) || player.hasPermission(Skyrama.getPermissionsManager().getString("island-perm-admin"))){
-            if(Skyrama.getIslandManager().getPlayerIsland(player) == null) {
-                Skyrama.getIslandManager().create(player);
-            } else {
-                player.sendMessage(Skyrama.getLocaleManager().getString("player-already-have-island"));
-            }
-        }else{
-            player.sendMessage(Skyrama.getLocaleManager().getString("player-noperm"));
+    @Override
+    public void perform(Player player, String[] args) {
+        if(Skyrama.getIslandManager().getPlayerIsland(player) == null) {
+            Skyrama.getIslandManager().create(player);
+        } else {
+            player.sendMessage(Skyrama.getLocaleManager().getString("player-already-have-island"));
         }
     }
 }

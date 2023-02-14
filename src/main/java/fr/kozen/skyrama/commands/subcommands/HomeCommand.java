@@ -6,6 +6,9 @@ import fr.kozen.skyrama.objects.islands.IslandDao;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class HomeCommand implements ISubCommand {
 
     @Override
@@ -19,23 +22,24 @@ public class HomeCommand implements ISubCommand {
     }
 
     @Override
+    public String getPermission() { return "skyrama.command.home"; }
+
+    @Override
     public String getSyntax() {
         return "/island home";
     }
 
     @Override
-    public void perform(Player player, String[] args) {
+    public List<String> getArgs() { return Arrays.asList(); }
 
-        if(player.hasPermission((Skyrama.getPermissionsManager().getString("island-perm-home"))) || player.hasPermission(Skyrama.getPermissionsManager().getString("island-perm-admin"))){
-            if(Skyrama.getIslandManager().getPlayerIsland(player) != null) {
-                player.sendMessage(Skyrama.getLocaleManager().getString("player-teleport-island"));
-                Skyrama.getIslandManager().getPlayerIsland(player).getSpawn().setWorld(Bukkit.getWorld((String) Skyrama.getPlugin(Skyrama.class).getConfig().get("general.world")));
-                player.teleport(Skyrama.getIslandManager().getPlayerIsland(player).getSpawn());
-            } else {
-                player.sendMessage(Skyrama.getLocaleManager().getString("player-no-island"));
-            }
-        }else{
-            player.sendMessage(Skyrama.getLocaleManager().getString("player-noperm"));
+    @Override
+    public void perform(Player player, String[] args) {
+        if(Skyrama.getIslandManager().getPlayerIsland(player) != null) {
+            player.sendMessage(Skyrama.getLocaleManager().getString("player-teleport-island"));
+            Skyrama.getIslandManager().getPlayerIsland(player).getSpawn().setWorld(Bukkit.getWorld((String) Skyrama.getPlugin(Skyrama.class).getConfig().get("general.world")));
+            player.teleport(Skyrama.getIslandManager().getPlayerIsland(player).getSpawn());
+        } else {
+            player.sendMessage(Skyrama.getLocaleManager().getString("player-no-island"));
         }
     }
 }

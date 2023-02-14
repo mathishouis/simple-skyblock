@@ -15,11 +15,13 @@ import com.sk89q.worldedit.math.BlockVector3;
 import com.sk89q.worldedit.session.ClipboardHolder;
 import fr.kozen.skyrama.Skyrama;
 import org.bukkit.Bukkit;
+import org.bukkit.World;
 import org.bukkit.plugin.Plugin;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.util.Objects;
 
 public class SchematicManager {
@@ -37,10 +39,9 @@ public class SchematicManager {
     public void load(String name, double x, double y, double z) {
 
         try {
-            File file = new File(Skyrama.getPlugin(Skyrama.class).getDataFolder() + "/schematics/" + name + ".schematic");
-            Bukkit.getLogger().info(file.getPath());
+            File file = new File(Skyrama.getPlugin(Skyrama.class).getDataFolder() + "/schematics/" + name + ".schem");
             ClipboardFormat format = ClipboardFormats.findByFile(file);
-            ClipboardReader reader = format.getReader(new FileInputStream(file));
+            ClipboardReader reader = Objects.requireNonNull(format).getReader(Files.newInputStream(file.toPath()));
             Clipboard clipboard = reader.read();
             try (EditSession editSession = WorldEdit.getInstance().getEditSessionFactory().getEditSession(BukkitAdapter.adapt(Objects.requireNonNull(Bukkit.getWorld((String) Skyrama.getPlugin(Skyrama.class).getConfig().get("general.world")))), -1)) {
                 Operation operation = new ClipboardHolder(clipboard)
@@ -58,5 +59,4 @@ public class SchematicManager {
             e.printStackTrace();
         }
     }
-
 }
