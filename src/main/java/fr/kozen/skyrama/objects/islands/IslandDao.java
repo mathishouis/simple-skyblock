@@ -113,7 +113,7 @@ public class IslandDao {
     public static void addPlayer(OfflinePlayer player, Island island, Rank rank) {
 
         try (Connection conn = Skyrama.getSqlManager().getConnection(); PreparedStatement stmt = conn.prepareStatement(
-                    "INSERT INTO islands_users(uuid, island_id, rank) VALUES(?, ?, ?);")) {
+                    "INSERT INTO islands_users(`uuid`, `island_id`, `rank`) VALUES(?, ?, ?);")) {
             stmt.setString(1, player.getUniqueId().toString());
             stmt.setInt(2, island.getId());
             stmt.setInt(3, rank.rank);
