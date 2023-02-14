@@ -40,6 +40,7 @@ public final class Skyrama extends JavaPlugin {
         // Load default locales
         saveResource("locales/en_US.yml", false);
         saveResource("locales/de_DE.yml", false);
+        saveResource("schematics/island.schem", false);
 
     }
 
