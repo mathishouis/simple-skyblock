@@ -12,8 +12,7 @@ public class OnBlockPlace implements Listener {
     public void onBlockPlace(BlockPlaceEvent event) {
 
         if(Skyrama.getGridManager().isInPlayerIsland(event.getPlayer(), event.getPlayer().getLocation()) == 1) {
-            if(event.getPlayer().hasPermission(Skyrama.getPermissionsManager().getString("island-perm-place")) || event.getPlayer().hasPermission(Skyrama.getPermissionsManager().getString("island-perm-admin"))){
-
+            if(event.getPlayer().hasPermission("skyrama.event.place")){
                 event.setCancelled(false);
             }else{
                 event.getPlayer().sendMessage(Skyrama.getLocaleManager().getString("player-place"));

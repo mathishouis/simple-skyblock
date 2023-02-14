@@ -51,7 +51,7 @@ public class IslandManager {
         island.save();
 
 
-        Skyrama.getSchematicManager().load(Skyrama.getPlugin(Skyrama.class).getConfig().getString("island.schematic"), location.getX(), location.getY(), location.getZ());
+        Skyrama.getSchematicManager().load(Skyrama.getPlugin(Skyrama.class).getConfig().getString("island.schem"), location.getX(), location.getY(), location.getZ());
         owner.getPlayer().teleport(spawn);
 
     }

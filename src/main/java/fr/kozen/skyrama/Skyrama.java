@@ -5,7 +5,6 @@ import fr.kozen.skyrama.events.*;
 import fr.kozen.skyrama.objects.grids.GridManager;
 import fr.kozen.skyrama.objects.islands.IslandManager;
 import fr.kozen.skyrama.objects.locales.LocaleManager;
-import fr.kozen.skyrama.objects.permissions.PermissionsManager;
 import fr.kozen.skyrama.objects.schematics.SchematicManager;
 import fr.kozen.skyrama.storage.SqlManager;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -17,10 +16,6 @@ public final class Skyrama extends JavaPlugin {
     private static IslandManager islandManager;
     private static SchematicManager schematicManager;
     private static LocaleManager localeManager;
-
-    private static PermissionsManager permissionsManager;
-
-
 
     @Override
     public void onEnable() {
@@ -45,10 +40,7 @@ public final class Skyrama extends JavaPlugin {
         // Load default locales
         saveResource("locales/en_US.yml", false);
         saveResource("locales/de_DE.yml", false);
-        // Load default schematics
-        saveResource("schematics/island.schematic", false);
-        // Load default Permissions
-        saveResource("permissions.yml", false);
+
     }
 
     public void initCommands() {
@@ -64,7 +56,6 @@ public final class Skyrama extends JavaPlugin {
         islandManager = new IslandManager();
         schematicManager = new SchematicManager();
         localeManager = new LocaleManager();
-        permissionsManager = new PermissionsManager();
 
         islandManager.loadIslands();
 
@@ -113,9 +104,4 @@ public final class Skyrama extends JavaPlugin {
 
     }
 
-    public static PermissionsManager getPermissionsManager() {
-
-        return permissionsManager;
-
-    }
 }

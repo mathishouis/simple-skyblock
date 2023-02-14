@@ -7,6 +7,9 @@ import fr.kozen.skyrama.objects.islands.IslandDao;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class InviteDenyCommand implements ISubCommand {
 
     @Override
@@ -20,34 +23,35 @@ public class InviteDenyCommand implements ISubCommand {
     }
 
     @Override
+    public String getPermission() { return "skyrama.command.invite.deny"; }
+
+    @Override
     public String getSyntax() {
         return "/island deny playerName";
     }
 
     @Override
+    public List<String> getArgs() { return Arrays.asList(); }
+
+    @Override
     public void perform(Player player, String[] args) {
+        if(Bukkit.getPlayer(args[1]) != null) {
+            Player target = Bukkit.getPlayer(args[1]);
 
-        if(player.hasPermission((Skyrama.getPermissionsManager().getString("island-perm-invite-deny"))) || player.hasPermission(Skyrama.getPermissionsManager().getString("island-perm-admin"))){
-            if(Bukkit.getPlayer(args[1]) != null) {
-                Player target = Bukkit.getPlayer(args[1]);
+            Island island = Skyrama.getIslandManager().getPlayerIsland(target);
 
-                Island island = Skyrama.getIslandManager().getPlayerIsland(target);
+            if(!island.getInvites().isEmpty() && island.getInvites().get(player) != null) {
 
-                if(!island.getInvites().isEmpty() && island.getInvites().get(player) != null) {
-
-                    island.getInvites().remove(player);
-                    player.sendMessage(Skyrama.getLocaleManager().getString("player-decline-invitation").replace("{0}", target.getName()));
-                    target.sendMessage(Skyrama.getLocaleManager().getString("player-decline-your-invitation").replace("{0}", player.getName()));
-
-                } else {
-                    player.sendMessage(Skyrama.getLocaleManager().getString("player-no-invited").replace("{0}", args[1]));
-                }
+                island.getInvites().remove(player);
+                player.sendMessage(Skyrama.getLocaleManager().getString("player-decline-invitation").replace("{0}", target.getName()));
+                target.sendMessage(Skyrama.getLocaleManager().getString("player-decline-your-invitation").replace("{0}", player.getName()));
 
             } else {
-                player.sendMessage(Skyrama.getLocaleManager().getString("player-offline").replace("{0}", args[1]));
+                player.sendMessage(Skyrama.getLocaleManager().getString("player-no-invited").replace("{0}", args[1]));
             }
-        }else{
-            player.sendMessage(Skyrama.getLocaleManager().getString("player-noperm"));
+
+        } else {
+            player.sendMessage(Skyrama.getLocaleManager().getString("player-offline").replace("{0}", args[1]));
         }
     }
 }

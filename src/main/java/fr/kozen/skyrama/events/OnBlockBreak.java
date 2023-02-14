@@ -12,7 +12,7 @@ public class OnBlockBreak implements Listener {
     public void onBlockBreak(BlockBreakEvent event) {
 
         if(Skyrama.getGridManager().isInPlayerIsland(event.getPlayer(), event.getBlock().getLocation()) == 1) {
-            if(event.getPlayer().hasPermission(Skyrama.getPermissionsManager().getString("island-perm-break")) || event.getPlayer().hasPermission(Skyrama.getPermissionsManager().getString("island-perm-admin"))){
+            if(event.getPlayer().hasPermission("skyrama.event.break")){
 
                 event.setCancelled(false);
             }else{
