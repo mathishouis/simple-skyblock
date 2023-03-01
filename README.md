@@ -17,28 +17,26 @@ This plugin was originally made for `Spigot 1.19` but you can totally edit it to
 
 ## Commands
 
-| Command       | Description  |
-| ------------- |-------------|
-| `/is` or `/island`       | Show the help menu with all the commands. |
-| `/is create`      | Create an island.      |
-| `/is home` | Teleport user to his island spawn.      |
-| `/is setspawn` | Change the island spawn to user position. |
-| `/is visit <Player Name>` | Teleport to the specified player island. |
-| `/is invite <Player Name>` | Invite the player to play on your island. |
-| `/is accept <Player Name>` | Accept the player invitation. |
-| `/is deny <Player Name>` | Decline the player invitation. |
+| Command                           | Description                               |
+|-----------------------------------|-------------------------------------------|
+| `/is` or `/island`                | Show the help menu with all the commands. |
+| `/is create`                      | Create an island.                         |
+| `/is home`                        | Teleport user to his island spawn.        |
+| `/is setspawn`                    | Change the island spawn to user position. |
+| `/is visit <Player Name>`         | Teleport to the specified player island.  |
+| `/is invite add <Player Name>`    | Invite the player to play on your island. |
+| `/is invite accept <Player Name>` | Accept the player invitation.             |
+| `/is invite deny <Player Name>`   | Decline the player invitation.            |
 
 ## Permissions
 
-| Permissions                     | Description  |
-|---------------------------------|-------------|
-| `skyrama.command.invite`        | Invite the player to play on your island. |
-| `skyrama.command.invite.accept` | Accept the player invitation. |
-| `skyrama.command.invite.deny`   | Decline the player invitation. |
-| `skyrama.command.create`        | Create an Island. |
-| `skyrama.command.home`          | Teleport user to his island spawn. |
-| `skyrama.command.visit`         | Teleport to the specified player island. |
-| `skyrama.command.setspawn`      | Change the island spawn to user position. |
+| Permissions                     | Description                                  |
+|---------------------------------|----------------------------------------------|
+| `skyrama.command.invite`        | Invite players / accept or deny invitations. |
+| `skyrama.command.create`        | Create an Island.                            |
+| `skyrama.command.home`          | Teleport user to his island spawn.           |
+| `skyrama.command.visit`         | Teleport to the specified player island.     |
+| `skyrama.command.setspawn`      | Change the island spawn to user position.    |
 | `skyrama.event.break`           | Break Blocks on a other Island without Trust |
 | `skyrama.event.place`           | Place Blocks on a other Island without Trust |
 

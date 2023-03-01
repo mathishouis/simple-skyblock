@@ -25,8 +25,6 @@ public class CommandManager implements CommandExecutor {
         subcommands.add(new SetSpawnCommand());
         subcommands.add(new VisitCommand());
         subcommands.add(new InviteCommand());
-        subcommands.add(new InviteAcceptCommand());
-        subcommands.add(new InviteDenyCommand());
         subcommands.add(new LeaveCommand());
 
         this.initTabCompleter();
