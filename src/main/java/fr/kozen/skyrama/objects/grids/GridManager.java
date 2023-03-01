@@ -2,7 +2,6 @@ package fr.kozen.skyrama.objects.grids;
 
 import fr.kozen.skyrama.Skyrama;
 import fr.kozen.skyrama.objects.islands.Island;
-import fr.kozen.skyrama.objects.islands.IslandDao;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;

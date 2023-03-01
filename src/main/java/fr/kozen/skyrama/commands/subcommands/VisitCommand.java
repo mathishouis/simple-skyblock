@@ -2,7 +2,6 @@ package fr.kozen.skyrama.commands.subcommands;
 
 import fr.kozen.skyrama.Skyrama;
 import fr.kozen.skyrama.interfaces.ISubCommand;
-import fr.kozen.skyrama.objects.islands.IslandDao;
 
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;

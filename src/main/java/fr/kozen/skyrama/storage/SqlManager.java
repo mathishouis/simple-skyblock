@@ -3,7 +3,7 @@ package fr.kozen.skyrama.storage;
 import com.mysql.cj.jdbc.MysqlConnectionPoolDataSource;
 import com.mysql.cj.jdbc.MysqlDataSource;
 import fr.kozen.skyrama.Skyrama;
-import fr.kozen.skyrama.objects.islands.IslandDao;
+import fr.kozen.skyrama.storage.queries.IslandDao;
 
 import java.sql.Connection;
 import java.sql.SQLException;

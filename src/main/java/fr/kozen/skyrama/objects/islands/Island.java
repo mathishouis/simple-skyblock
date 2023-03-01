@@ -1,14 +1,13 @@
 package fr.kozen.skyrama.objects.islands;
 
+import fr.kozen.skyrama.storage.queries.IslandDao;
 import fr.kozen.skyrama.types.Rank;
-import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.block.Biome;
 import org.bukkit.entity.Player;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class Island {

@@ -1,13 +1,13 @@
 package fr.kozen.skyrama.objects.islands;
 
 import fr.kozen.skyrama.Skyrama;
+import fr.kozen.skyrama.storage.queries.IslandDao;
 import fr.kozen.skyrama.types.Rank;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.block.Biome;
-import org.bukkit.entity.Player;
 
 import java.util.*;
 

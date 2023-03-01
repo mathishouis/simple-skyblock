@@ -2,7 +2,7 @@ package fr.kozen.skyrama.commands.subcommands;
 
 import fr.kozen.skyrama.Skyrama;
 import fr.kozen.skyrama.interfaces.ISubCommand;
-import fr.kozen.skyrama.objects.islands.IslandDao;
+import fr.kozen.skyrama.storage.queries.IslandDao;
 import org.bukkit.entity.Player;
 
 import java.util.Arrays;

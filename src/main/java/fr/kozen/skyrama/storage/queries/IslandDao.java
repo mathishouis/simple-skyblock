@@ -1,6 +1,7 @@
-package fr.kozen.skyrama.objects.islands;
+package fr.kozen.skyrama.storage.queries;
 
 import fr.kozen.skyrama.Skyrama;
+import fr.kozen.skyrama.objects.islands.Island;
 import fr.kozen.skyrama.types.Rank;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
