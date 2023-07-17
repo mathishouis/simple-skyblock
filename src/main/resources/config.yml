@@ -51,10 +51,10 @@ island:
   # Enable respawn on island when player die
   respawnIsland: true
 
-  # Disables the Protection of Build, destruction and interaction with block of islands
-  # only useful, if you have another plugin that manages that, or want grieving
-  disable_build_protection: false
+# Disables the Protection of Build, destruction and interaction with block of islands
+# only useful, if you have another plugin that manages that, or want grieving
+disable_build_protection: false
 
-  # Disables the PvP and Damage Protection of islands
-  # only useful, if you have another plugin that manages that, or want pvp
-  disable_pvp_protection: false
+# Disables the PvP and Damage Protection of islands
+# only useful, if you have another plugin that manages that, or want pvp
+disable_pvp_protection: false
