@@ -39,8 +39,10 @@ public class InviteCommand implements ISubCommand {
 
     @Override
     public void perform(Player player, String[] args) {
-        if (Bukkit.getPlayer(args[2]) == null) return;
-        if (args[1] == null) return;
+        if (args.length < 3) {
+            player.sendMessage(Skyrama.getLocaleManager().getString("invalid-syntax").replace("{0}", "/island invite <add | accept | deny> <player>"));
+            return;
+        }
 
         Island island = Skyrama.getIslandManager().getPlayerIsland(player);
         Player target = Bukkit.getPlayer(args[2]);
