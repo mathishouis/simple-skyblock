@@ -65,12 +65,12 @@ public final class Skyrama extends JavaPlugin {
 
     public void initEvents() {
 
-        if(!getConfig().getBoolean("disable_build_protection", false)){
+        if(getConfig().getBoolean("island.buildEnabled", true)){
             getServer().getPluginManager().registerEvents(new OnBlockBreak(), this);
             getServer().getPluginManager().registerEvents(new OnBlockPlace(), this);
             getServer().getPluginManager().registerEvents(new OnBlockClick(), this);
         }
-        if(!getConfig().getBoolean("disable_pvp_protection", false)){
+        if(!getConfig().getBoolean("island.pvpEnabled", false)){
             getServer().getPluginManager().registerEvents(new OnEntityTarget(), this);
             getServer().getPluginManager().registerEvents(new OnPlayerDamage(), this);
             getServer().getPluginManager().registerEvents(new OnEntityDamageByEntity(), this);
