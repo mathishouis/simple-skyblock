@@ -6,7 +6,7 @@
 
     <groupId>fr.kozen</groupId>
     <artifactId>skyrama</artifactId>
-    <version>0.3-ALPHA</version>
+    <version>0.4-ALPHA</version>
     <packaging>jar</packaging>
 
     <name>Skyrama</name>
