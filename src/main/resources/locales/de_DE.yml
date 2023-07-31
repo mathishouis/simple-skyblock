@@ -38,3 +38,6 @@ player-leave-island: §aDu hast die Insel verlassen!
 # OTHER ISLAND BREAK BLOCKS
 player-break: §cDu kannst keine Blöcke auf einer anderen Insel abbauen!
 player-place: §cDu kannst keine Blöcke auf einer anderen Insel platzieren!
+
+# GLOBAL
+invalid-syntax: §cFalsche Syntax, verwenden {0}.

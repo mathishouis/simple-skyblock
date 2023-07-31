@@ -38,3 +38,6 @@ player-leave-island: §aYou leave the island with success!
 # OTHER ISLAND BREAK BLOCKS
 player-break: §cYou can't break block in others player island
 player-place: §cYou can't place block in others player island.
+
+# GLOBAL
+invalid-syntax: §cWrong syntax, use {0}.
