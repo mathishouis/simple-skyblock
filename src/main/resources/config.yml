@@ -33,28 +33,20 @@ island:
 
   # Different island extension size in blocks (island width)
   # DON'T CHANGE THIS VALUE IN MID GAME /!\
-  extension_level:
+  extensionLevel:
     0: 65
     1: 129
     2: 257
     3: 513
 
-  # Enable PVP between members of the island
-  pvpIslandPlayer: false
+  # Enable PVP between players
+  pvpEnabled: false
 
-  # Enable PVP with island visitors
-  pvpIslandVisitor: false
+  # Enable block placing, breaking and interactions
+  buildEnabled: true
 
   # Enable spawn on island when login
   spawnIslandLogin: true
 
   # Enable respawn on island when player die
   respawnIsland: true
-
-# Disables the Protection of Build, destruction and interaction with block of islands
-# only useful, if you have another plugin that manages that, or want grieving
-disable_build_protection: false
-
-# Disables the PvP and Damage Protection of islands
-# only useful, if you have another plugin that manages that, or want pvp
-disable_pvp_protection: false
