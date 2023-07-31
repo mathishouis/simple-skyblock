@@ -21,10 +21,20 @@
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <configuration>
+                    <nonFilteredFileExtensions>
+                        <nonFilteredFileExtension>schem</nonFilteredFileExtension>
+                        <nonFilteredFileExtension>swf</nonFilteredFileExtension>
+                    </nonFilteredFileExtensions>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
                 <version>3.3.0</version>
                 <configuration>
-                    <outputDirectory>../../Minecraft/Skyrama/plugins/</outputDirectory>
+                    <outputDirectory>D:/Servers/Minecraft/Skyblock/plugins/</outputDirectory>
                 </configuration>
             </plugin>
             <plugin>
