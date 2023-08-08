@@ -39,10 +39,11 @@ island:
     2: 257
     3: 513
 
-  # Enable PVP between players
+  # Enable PVP on islands between players
   pvpEnabled: false
 
-  # Enable block placing, breaking and interactions
+  # Enable block placing, breaking and interactions in the player island
+  # Only useful if you have another plugin managing that
   buildEnabled: true
 
   # Enable spawn on island when login
